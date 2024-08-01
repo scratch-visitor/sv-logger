@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "jklim-logger",
+  "version": "0.1.0",
+  "port-version": 0,
+  "maintainers": [
+    "jklim"
+  ],
+  "summary": "logging library",
+  "description": [
+    "logging at console, file, udp network"
+  ],
+  "dependencies": [
+    "boost-asio"
+  ]
+}
