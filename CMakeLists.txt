@@ -1,3 +1,6 @@
+# project_name
+# package_name: sv-{project_name}
+# export_name: {package_name}-config
 cmake_minimum_required(VERSION 3.21)
 project(logger
   VERSION 0.1.0
@@ -8,7 +11,9 @@ if (NOT DEFINED CMAKE_CONFIGURATION_TYPES)
   set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
 endif()
 
-set(EXPORT_NAME sv-config-${PROJECT_NAME})
+set(TARGET_NAME ${PROJECT_NAME})
+set(PACKAGE_NAME sv-${TARGET_NAME})
+set(EXPORT_NAME ${PACKAGE_NAME}-config)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -33,7 +38,7 @@ endif()
 add_subdirectory(src)
 
 # export target for using target in build tree(outside install tree).
-export(TARGETS logger
+export(TARGETS ${TARGET_NAME}
       NAMESPACE sv::
       FILE ${EXPORT_NAME}.cmake
 )

@@ -3,18 +3,20 @@ project(tester
   LANGUAGES CXX
 )
 
-add_executable(${PROJECT_NAME}
+set(TESTER_NAME ${PROJECT_NAME})
+
+add_executable(${TESTER_NAME}
   tester.cpp
 )
 
-target_include_directories(${PROJECT_NAME}
+target_include_directories(${TESTER_NAME}
   PRIVATE
     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
 )
 
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(${TESTER_NAME}
   PRIVATE
     Boost::boost
-    sv::logger
+    sv::${TARGET_NAME}
 )
