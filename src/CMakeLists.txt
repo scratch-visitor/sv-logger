@@ -9,10 +9,10 @@ set_target_properties(${TARGET_NAME} PROPERTIES
     sv/logger.hpp
 )
 
-# target_link_libraries(${TARGET_NAME}
-#   INTERFACE
-#     Boost::asio
-# )
+target_link_libraries(${TARGET_NAME}
+  INTERFACE
+    Boost::boost
+)
 
 install(TARGETS ${TARGET_NAME}
         EXPORT ${EXPORT_NAME}
