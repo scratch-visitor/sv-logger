@@ -5,7 +5,7 @@ project(logger
 )
 
 set(TARGET_NAME sv-${PROJECT_NAME})
-set(EXPORT_NAME sv-${PROJECT_NAME}-config)
+set(EXPORT_NAME sv-config)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
