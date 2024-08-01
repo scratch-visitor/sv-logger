@@ -11,6 +11,10 @@
     "logging at console, file, udp network"
   ],
   "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
     "boost-asio"
   ],
   "builtin-baseline": "28b1cf627c0570b3e094192df2fce31a3a2bc1d3"
