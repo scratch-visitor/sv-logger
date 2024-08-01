@@ -23,7 +23,11 @@ elseif (UNIX)
   set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 endif()
 
-find_package(Boost CONFIG REQUIRED)
+if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.30")
+  find_package(Boost CONFIG REQUIRED)
+else()
+  find_package(Boost REQUIRED)
+endif()
 
 # build library
 add_subdirectory(src)
