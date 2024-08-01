@@ -13,8 +13,3 @@ target_link_libraries(logger
   INTERFACE
     Boost::boost
 )
-
-install(TARGETS logger
-        EXPORT ${EXPORT_NAME}
-        PUBLIC_HEADER DESTINATION "include/sv"
-)
