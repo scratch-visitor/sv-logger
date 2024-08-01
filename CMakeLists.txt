@@ -20,7 +20,7 @@ elseif (UNIX)
   set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 endif()
 
-find_package(Boost REQUIRED COMPONENTS asio)
+find_package(boost_asio CONFIG REQUIRED)
 
 add_subdirectory(src)
 add_subdirectory(test)
