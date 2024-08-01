@@ -1,20 +1,20 @@
 cmake_minimum_required(VERSION 3.21)
 
-add_library(${TARGET_NAME} INTERFACE
+add_library(logger INTERFACE
   sv/logger.hpp
 )
 
-set_target_properties(${TARGET_NAME} PROPERTIES
+set_target_properties(logger PROPERTIES
   PUBLIC_HEADER
     sv/logger.hpp
 )
 
-target_link_libraries(${TARGET_NAME}
+target_link_libraries(logger
   INTERFACE
     Boost::boost
 )
 
-install(TARGETS ${TARGET_NAME}
+install(TARGETS logger
         EXPORT ${EXPORT_NAME}
         PUBLIC_HEADER DESTINATION "include/sv"
 )

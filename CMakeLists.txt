@@ -4,8 +4,8 @@ project(logger
   LANGUAGES CXX
 )
 
-set(TARGET_NAME sv-${PROJECT_NAME})
 set(EXPORT_NAME sv-config)
+set(sv::logger ALIAS logger)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -28,4 +28,8 @@ add_subdirectory(test)
 install(EXPORT ${EXPORT_NAME}
         DESTINATION "share/sv"
         NAMESPACE sv
+)
+export(TARGETS logger
+      NAMESPACE sv
+      FILE ${EXPORT_NAME}.cmake
 )
