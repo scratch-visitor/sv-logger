@@ -32,18 +32,6 @@ endif()
 # build library
 add_subdirectory(src)
 
-# export target inside install tree.
-install(TARGETS logger
-        EXPORT ${EXPORT_NAME}
-        PUBLIC_HEADER DESTINATION "include/sv"
-)
-install(EXPORT ${EXPORT_NAME}
-        NAMESPACE sv::
-        DESTINATION "share/sv"
-)
-
-add_library(sv::logger ALIAS logger)
-
 # export target for using target in build tree(outside install tree).
 export(TARGETS logger
       NAMESPACE sv::
