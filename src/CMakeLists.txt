@@ -16,5 +16,5 @@ target_link_libraries(${TARGET_NAME}
 
 install(TARGETS ${TARGET_NAME}
         EXPORT ${EXPORT_NAME}
-        PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_PREFIX}/include/sv"
+        PUBLIC_HEADER DESTINATION "include/sv"
 )

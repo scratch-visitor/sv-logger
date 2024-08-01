@@ -26,6 +26,6 @@ add_subdirectory(src)
 add_subdirectory(test)
 
 install(EXPORT ${EXPORT_NAME}
-        DESTINATION "${CMAKE_INSTALL_PREFIX}/share/sv"
+        DESTINATION "share/sv"
         NAMESPACE sv
 )
