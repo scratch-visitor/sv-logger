@@ -4,17 +4,17 @@
     {
       "name": "base",
       "hidden": true,
-      "binaryDir": "${sourceDir}/.deploy/${presetName}",
       "generator": "Ninja",
       "architecture": {
         "value": "x64",
         "strategy": "external"
       },
+      "binaryDir": "${sourceDir}/.build",
+      "installDir": "${sourceDir}/.install",
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
         "VCPKG_INSTALLED_DIR": "${sourceDir}/.packages",
-        "CMAKE_CONFIGURATION_TYPES": "Debug;Release",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/.install/${presetName}"
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release"
       }
     },
     {

@@ -1,15 +1,17 @@
 #pragma once
 
 #ifdef _WIN32
+#ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
+#endif // WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #endif // _WIN32
 
 #include <boost/asio.hpp>
+#include <fmt/format.h>
 #include <thread>
 #include <iostream>
 #include <fstream>
-#include <format>
 #include <string>
 #include <mutex>
 #include <memory>
@@ -128,9 +130,9 @@ void log(StringT&& s)
 }
 
 template<class...T>
-void log(std::format_string<T...> fmt, T&&...v)
+void log(fmt::format_string<T...> fmt, T&&...v)
 {
-  log(std::vformat(fmt.get(), std::make_format_args(v...)));
+  log(fmt::vformat(fmt.get(), fmt::make_format_args(v...)));
 }
 
 template<class StringT>
@@ -187,7 +189,7 @@ std::string to_string(TimePoint const& tp)
 template<class StringT>
 void console_out<StringT>::operator()()
 {
-  std::cout << std::format("[{}] {}\n", to_string(timestamp_), msg_) << std::flush;
+  std::cout << fmt::format("[{}] {}\n", to_string(timestamp_), msg_) << std::flush;
 }
 
 template<class StringT>
@@ -195,7 +197,7 @@ void file_out<StringT>::operator()()
 {
   std::fstream logfile("app.log", std::ios::app);
 
-  logfile << std::format("[{}] {}\n", to_string(timestamp_), msg_) << std::flush;
+  logfile << fmt::format("[{}] {}\n", to_string(timestamp_), msg_) << std::flush;
 }
 
 template<class Executor, class StringT>
@@ -210,7 +212,7 @@ void network_out<Executor, StringT>::operator()()
   asio::streambuf buffer;
   std::ostream os(&buffer);
 
-  os << std::format("[{}] {}\n", to_string(timestamp_), msg_);
+  os << fmt::format("[{}] {}\n", to_string(timestamp_), msg_);
 
   sock.async_send_to(buffer.data(), ep, [](auto ec, auto sz) { /*no matter*/ });
 }

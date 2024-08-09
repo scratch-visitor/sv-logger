@@ -8,10 +8,10 @@
       "name": "Launch-Windows",
       "type": "cppvsdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/.deploy/Debug/bin/tester.exe",
+      "program": "${workspaceFolder}/.build/bin/Debug/sv-logger-tester.exe",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "${workspaceFolder}/.deploy/Debug/bin",
+      "cwd": "${workspaceFolder}/.build/bin/Debug",
       "environment": [],
       "console": "externalTerminal"
     }

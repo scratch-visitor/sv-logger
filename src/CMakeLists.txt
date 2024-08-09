@@ -1,28 +1,45 @@
 cmake_minimum_required(VERSION 3.21)
 
-add_library(${TARGET_NAME} INTERFACE
-  sv/logger.hpp
+file(GLOB_RECURSE HEADER_FILES
+  RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+  *.hpp
 )
 
-set_target_properties(${TARGET_NAME} PROPERTIES
-  PUBLIC_HEADER
-    sv/logger.hpp
-)
+message("HEADER_FILES: ${HEADER_FILES}")
 
-target_link_libraries(${TARGET_NAME}
+add_library(${PACKAGE_NAME} INTERFACE)
+add_library(sv::${TARGET_NAME} ALIAS ${PACKAGE_NAME})
+
+target_link_libraries(${PACKAGE_NAME}
   INTERFACE
-    Boost::boost
+    Boost::asio
+    fmt::fmt-header-only
+)
+
+target_include_directories(${PACKAGE_NAME}
+  INTERFACE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:include>
 )
 
 # export target inside install tree.
-install(TARGETS ${TARGET_NAME}
+install(TARGETS ${PACKAGE_NAME}
         EXPORT ${EXPORT_NAME}
-        PUBLIC_HEADER DESTINATION "include/sv"
 )
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/sv
+  DESTINATION include
+  FILES_MATCHING
+  PATTERN "*.hpp"
+)
+
 install(EXPORT ${EXPORT_NAME}
         NAMESPACE sv::
+        COMPONENT ${TARGET_NAME}
         DESTINATION "share/${PACKAGE_NAME}"
 )
 
-# ALIAS of target
-add_library(sv::${TARGET_NAME} ALIAS ${TARGET_NAME})
+export(TARGETS ${PACKAGE_NAME}
+      NAMESPACE sv::
+      FILE ${EXPORT_NAME}.cmake
+)
