@@ -24,7 +24,7 @@ endif()
 if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.30")
   find_package(boost_asio CONFIG REQUIRED)
 else()
-  find_package(Boost REQUIRED COMPONENTS asio)
+  find_package(Boost REQUIRED)
 endif()
 
 find_package(fmt CONFIG REQUIRED)

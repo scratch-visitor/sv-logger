@@ -10,11 +10,18 @@ message("HEADER_FILES: ${HEADER_FILES}")
 add_library(${PACKAGE_NAME} INTERFACE)
 add_library(sv::${TARGET_NAME} ALIAS ${PACKAGE_NAME})
 
-target_link_libraries(${PACKAGE_NAME}
-  INTERFACE
-    Boost::asio
-    fmt::fmt-header-only
-)
+if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.30")
+  target_link_libraries(${PACKAGE_NAME}
+    INTERFACE
+      Boost::asio
+      fmt::fmt-header-only
+  )
+else()
+  target_link_libraries(${PACKAGE_NAME}
+    INTERFACE
+      fmt::fmt-header-only
+  )
+endif()
 
 target_include_directories(${PACKAGE_NAME}
   INTERFACE
