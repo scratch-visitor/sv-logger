@@ -7,31 +7,31 @@ file(GLOB_RECURSE HEADER_FILES
 
 message("HEADER_FILES: ${HEADER_FILES}")
 
-add_library(${PACKAGE_NAME} INTERFACE)
-add_library(sv::${TARGET_NAME} ALIAS ${PACKAGE_NAME})
+add_library(${TARGET_NAME} INTERFACE)
+add_library(sv::${TARGET_NAME} ALIAS ${TARGET_NAME})
 
 if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.30")
-  target_link_libraries(${PACKAGE_NAME}
+  target_link_libraries(${TARGET_NAME}
     INTERFACE
       Boost::asio
       fmt::fmt-header-only
   )
 else()
-  target_link_libraries(${PACKAGE_NAME}
+  target_link_libraries(${TARGET_NAME}
     INTERFACE
       fmt::fmt-header-only
   )
 endif()
 
-target_include_directories(${PACKAGE_NAME}
+target_include_directories(${TARGET_NAME}
   INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:include>
 )
 
 # export target inside install tree.
-install(TARGETS ${PACKAGE_NAME}
-        EXPORT ${EXPORT_NAME}
+install(TARGETS ${TARGET_NAME}
+        EXPORT ${PACKAGE_NAME}
 )
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/sv
@@ -40,13 +40,13 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/sv
   PATTERN "*.hpp"
 )
 
-install(EXPORT ${EXPORT_NAME}
+install(EXPORT ${PACKAGE_NAME}
         NAMESPACE sv::
-        COMPONENT ${TARGET_NAME}
+        FILE ${EXPORT_NAME}.cmake
         DESTINATION "share/${PACKAGE_NAME}"
 )
 
-export(TARGETS ${PACKAGE_NAME}
+export(TARGETS ${TARGET_NAME}
       NAMESPACE sv::
       FILE ${EXPORT_NAME}.cmake
 )

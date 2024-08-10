@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "sv-logger",
   "version": "0.1.0",
-  "port-version": 5,
+  "port-version": 6,
   "maintainers": [
     "jklim"
   ],
